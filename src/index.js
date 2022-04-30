@@ -4,11 +4,11 @@ import { goods } from './goods.js';
  * @param {string} brand
  * @returns {*}
  */
-const brandFilter = (brand) => {
 
-  let result = goods.filter(function(item){
+const brandFilter = (brand) => {
+  let result = goods.filter(function (item) {
     return item.brand === brand;
-  })
+  });
 
   return result;
 };
@@ -17,10 +17,11 @@ const brandFilter = (brand) => {
  * @param {string} color
  * @returns {*}
  */
+
 const colorFilter = (color) => {
-  let result = goods.filter(function(item){
+  let result = goods.filter(function (item) {
     return item.color === color;
-  })
+  });
 
   return result;
 };
@@ -29,10 +30,11 @@ const colorFilter = (color) => {
  * @param {string} model
  * @returns {*}
  */
+
 const modelFilter = (model) => {
-  let result = goods.filter(function(item){
+  let result = goods.filter(function (item) {
     return item.model === model;
-  })
+  });
 
   return result;
 };
@@ -41,10 +43,11 @@ const modelFilter = (model) => {
  * @param {number} memory
  * @returns {*}
  */
+
 const memoryFilter = (memory) => {
-  let result = goods.filter(function(item){
+  let result = goods.filter(function (item) {
     return item.memory === memory;
-  })
+  });
 
   return result;
 };
@@ -53,10 +56,11 @@ const memoryFilter = (memory) => {
  * @param {number} price
  * @returns {*}
  */
+
 const priceFilter = (price) => {
-  let result = goods.filter(function(item){
+  let result = goods.filter(function (item) {
     return item.price === price;
-  })
+  });
 
   return result;
 };
@@ -65,10 +69,11 @@ const priceFilter = (price) => {
  * @param {string} country
  * @returns {*}
  */
+
 const countryFilter = (country) => {
-  let result = goods.filter(function(item){
+  let result = goods.filter(function (item) {
     return item.country === country;
-  })
+  });
 
   return result;
 };
@@ -77,10 +82,11 @@ const countryFilter = (country) => {
  * @param {string} os
  * @returns {*}
  */
+
 const osFilter = (os) => {
-  let result = goods.filter(function(item){
+  let result = goods.filter(function (item) {
     return item.os === os;
-  })
+  });
 
   return result;
 };
@@ -89,56 +95,53 @@ const osFilter = (os) => {
  * @param {number} from
  * @param {number} to
  */
-const rangeFilter = (from, to) => {
 
-  let result = goods.filter(function(item){
+const rangeFilter = (from, to) => {
+  let result = goods.filter(function (item) {
     return item.price <= to && item.price >= from;
-  })
+  });
 
   return result;
 };
 
 const minPriceReducer = () => {
-
-
-  let result = goods.reduce(function (prev, current, i, arr) {
-
-    prev = (Math.min(prev.price, current.price));
-    return prev;
-
+  let result = goods.reduce(function (prev, current) {
+    if (prev.price < current.price) {
+      return prev;
+    } else {
+      return current;
+    }
   });
 
   return result.price;
-}
+};
 
 const maxPriceReducer = () => {
-  let result = goods.reduce(function (prev, current, i, arr) {
-
-    arr.price = Math.min(prev.price, current.price);
-    return arr[i];
-
+  let result = goods.reduce(function (prev, current) {
+    if (prev.price > current.price) {
+      return prev;
+    } else {
+      return current;
+    }
   });
 
   return result.price;
-
 };
 
 const toMaxSorter = () => {
-
-  let result = goods.sort(function (a,b){
-    if(a.price > b.price) return -1;
-    if (a.price < b.price) return 1
+  let result = goods.sort(function (a, b) {
+    if (a.price > b.price) return -1;
+    if (a.price < b.price) return 1;
     return 0;
   });
 
   return result;
-
 };
-const toMinSorter = () => {
 
-  let result = goods.sort(function (a,b){
-    if(a.price > b.price) return 1;
-    if (a.price < b.price) return -1
+const toMinSorter = () => {
+  let result = goods.sort(function (a, b) {
+    if (a.price > b.price) return 1;
+    if (a.price < b.price) return -1;
     return 0;
   });
 
